@@ -12,7 +12,7 @@ def sendImages(rawArray):
 	#image = app.inputs.create_image_from_filename(argv[1])
 	#image = app.inputs.create_image_from_url(url='https://samples.clarifai.com/puppy.jpeg',allow_duplicate_url=True)
 	images = []
-	for im in rawArray():
+	for im in rawArray:
 		images.append(CImage(base64=im))
 	r = model.predict(images)
 	print('--'*48)

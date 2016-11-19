@@ -1,4 +1,5 @@
 from clarifai.rest import ClarifaiApp
+from clarifai.rest import Image as CImage
 import requests
 
 def sendImages(rawArray):
@@ -10,9 +11,10 @@ def sendImages(rawArray):
 	model = app.models.get('Classify')
 	#image = app.inputs.create_image_from_filename(argv[1])
 	#image = app.inputs.create_image_from_url(url='https://samples.clarifai.com/puppy.jpeg',allow_duplicate_url=True)
+	images = []
 	for im in rawArray():
-		image = app.inputs.create_image_from_bytes(im ,allow_duplicate_url=True)
-	r = model.predict([image])
+		images.append(CImage(base64=im))
+	r = model.predict(images)
 	print('--'*48)
 	# the below is a list of n maps of labeled concepts and probabilities
 	# for m images.

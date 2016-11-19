@@ -3,7 +3,7 @@ from clarifai.rest import Image as CImage
 import requests
 
 def sendImages(rawArray):
-	payload = {'client_id':'HayIsw2teQjYnJt-JnUA2v9Ue4B1qePMufhj6_m6', 'client_secret':'bON_Lt_z6pS5mOA4E4deBs0zq71Xn324VxW8lq1E', 'grant_type':'client_credentials'}
+	payload = {'client_id':'gRuqdodmCNn8v8dNM-52YJVsqJF40JYaFxCBqhkW', 'client_secret':'EitsVNoFsVlG6zwur3HBxZ65TzP9aEvGVfuyX-58', 'grant_type':'client_credentials'}
 	#r = requests.post("https://api.clarifai.com/v1/token/", data=payload)
 #print(r.text)
 

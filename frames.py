@@ -2,7 +2,7 @@ import imageio
 from upload import sendImages 
 import binascii
 
-filename = 'basketball.mp4'
+filename = 'Losing.mp4'
 vid = imageio.get_reader(filename,  'ffmpeg')
 length =  vid.get_length()
 fps = vid.get_meta_data()['fps']

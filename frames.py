@@ -2,7 +2,7 @@ import imageio
 from upload import sendImages 
 import binascii
 
-filename = 'Losing.mp4'
+filename = 'IDShots.mp4'
 vid = imageio.get_reader(filename,  'ffmpeg')
 length =  vid.get_length()
 fps = vid.get_meta_data()['fps']
@@ -36,6 +36,6 @@ for image in r['outputs']:
 			value = concept['value']
 			word = concept['id']
 	concept_counts[word] = concept_counts.get(word, 0) + 1
-	print (concept_counts[word])
+	#print (concept_counts[word])
 print concept_counts
 			

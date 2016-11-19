@@ -1,5 +1,6 @@
 import imageio
 from upload import sendImages 
+import binascii
 
 filename = 'IDShots.mp4'
 vid = imageio.get_reader(filename,  'ffmpeg')

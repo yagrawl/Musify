@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import imageio
 from upload import sendImages 
 

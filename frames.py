@@ -25,16 +25,17 @@ r = sendImages(base64)
 print('--'*48)
 # the below is a list of n maps of labeled concepts and probabilities
 # for m images.
-concepts_counts = {}
+concept_counts = {}
 for image in r['outputs']:
 	concepts = (image['data']['concepts'])
 	word = ''
 	value = 0.0
 	for concept in concepts:
-		print(concept['id'], concept['value'])
+		#print(concept['id'], concept['value'])
 		if concept['value'] > value:
 			value = concept['value']
 			word = concept['id']
 	concept_counts[word] = concept_counts.get(word, 0) + 1
+	print (concept_counts[word])
 print concept_counts
 			

@@ -14,11 +14,6 @@ def sendImages(rawArray):
 	images = []
 	for im in rawArray():
 		images.append(CImage(base64=im))
-	r = model.predict(images)
-	print('--'*48)
-	# the below is a list of n maps of labeled concepts and probabilities
-	# for m images.
-	for image in r['outputs']:
-		concepts = (image['data']['concepts'])
-		for concept in concepts:
-			print(concept['id'], concept['value'])
+	return model.predict(images)
+			
+						

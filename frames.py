@@ -19,4 +19,21 @@ base64 = []
 for image in images_bytes:
 	base64.append(binascii.b2a_base64(image))
 
-sendImages(base64)
+r = sendImages(base64)
+
+print('--'*48)
+# the below is a list of n maps of labeled concepts and probabilities
+# for m images.
+concepts_counts = {}
+for image in r['outputs']:
+	concepts = (image['data']['concepts'])
+	word = ''
+	value = 0.0
+	for concept in concepts:
+		print(concept['id'], concept['value'])
+		if concept['value'] > value:
+			value = concept['value']
+			word = concept['id']
+	concept_counts[word] = concept_counts.get(word, 0) + 1
+print concept_counts
+			

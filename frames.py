@@ -15,4 +15,8 @@ for i in range(len(images)):
     images_bytes.append(imageio.imwrite(imageio.RETURN_BYTES, images[i], "jpg"))
 
 
-sendImages(images_bytes)
+base64 = []
+for image in images_bytes:
+	base64.append(binascii.b2a_base64(image))
+
+sendImages(base64)

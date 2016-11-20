@@ -4,7 +4,7 @@ import binascii
 from pydub import AudioSegment
 from splice import splice
 
-filename = 'Videos/Buzz.mp4'
+filename = 'Videos/Rain.mp4'
 vid = imageio.get_reader(filename,  'ffmpeg')
 length =  vid.get_length()
 fps = vid.get_meta_data()['fps']
@@ -67,15 +67,15 @@ other = ''
 if(mx == 'sad' or mx == 'happy'):
 	ratio = word_counts['calm']/word_counts['action']
 	if ratio > 2:
-		songf[6] = 'C'
+		songf = songf[:6] + 'C' + songf[7:]
 	elif 1/ratio > 2:
-		songf[6] = 'A'
+		songf = songf[:6] + 'A' + songf[7:]
 else:
 	ratio = word_counts['sad']/word_counts['happy']
 	if ratio > 2:
-		songf[7] = 'S'
+		songf = songf[:7] + 'S' + songf[8:]
 	elif 1/ratio > 2:
-		songf[7] = 'H'
+		songf = songf[:7] + 'H' + songf[8:]
 		
 print(songf)
 song = AudioSegment.from_mp3(songf)

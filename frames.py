@@ -5,11 +5,8 @@ from pydub import AudioSegment
 from splice import splice
 import sys
 import pafy
-def analyze(inurl, outfile): 
-	vid = pafy.new(inurl)
-	video = vid.getbest()
-	video.download(filepath='curvid')
-	filename = 'curvid'
+def analyze(infile, outfile): 
+	filename = infile
 	vid = imageio.get_reader(filename,  'ffmpeg')
 	length =  vid.get_length()
 	fps = vid.get_meta_data()['fps']
@@ -104,7 +101,15 @@ def analyze(inurl, outfile):
 	vidSong.export('temp.mp3', format="mp3")
 	splice(filename, "temp.mp3", 'output.mp4')
 
+def getfrurl(inurl):
+	vid = pafy.new(inurl)
+	video = vid.getbest()
+	video.download(filepath='curvid')
+	return 'curvid'
+
 def main():
+	if sys.argv[1] == '-u':
+		analyze(getfrurl(sys.argv[2]), sys.argv[3])
 	analyze(sys.argv[1], sys.argv[2])
 if __name__ == '__main__':
 	main()

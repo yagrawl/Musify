@@ -99,7 +99,7 @@ def analyze(infile, outfile):
 		vidSong = vidSong[:vidLen*1000]
 
 	vidSong.export('temp.mp3', format="mp3")
-	splice(filename, "temp.mp3", 'output.mp4')
+	splice(filename, "temp.mp3", outfile)
 
 def getfrurl(inurl):
 	vid = pafy.new(inurl)

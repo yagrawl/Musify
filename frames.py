@@ -34,9 +34,9 @@ def analyze(inurl, outfile):
 	rs = []
 	for i in range(0,len(base64), 128):
 		if len(base64) - i < 128:
-			rs += sendImages(base64[i:])
+			rs += [sendImages(base64[i:])]
 		else:
-			rs += sendImages(base64[i:i+128])
+			rs += [sendImages(base64[i:i+128])]
 
 	print('--'*48)
 	# the below is a list of n maps of labeled concepts and probabilities
@@ -77,15 +77,15 @@ def analyze(inurl, outfile):
 	if(mx == 'sad' or mx == 'happy'):
 		ratio = word_counts['calm']/word_counts['action']
 		if ratio > 2:
-			songf[6] = 'C'
+			songf = songf[:6] + 'C' + songf[7:]
 		elif 1/ratio > 2:
-			songf[6] = 'A'
+			songf = songf[:6] + 'A' + songf[7:]
 	else:
 		ratio = word_counts['sad']/word_counts['happy']
 		if ratio > 2:
-			songf[7] = 'S'
+			songf = songf[:7] + 'S' + songf[8:]
 		elif 1/ratio > 2:
-			songf[7] = 'H'
+			songf = songf[:7] + 'H' + songf[8:]
 			
 	print(songf)
 	song = AudioSegment.from_mp3(songf)

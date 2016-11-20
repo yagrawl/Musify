@@ -4,8 +4,12 @@ import binascii
 from pydub import AudioSegment
 from splice import splice
 import sys
-def analyze(infile, outfile): 
-	filename =  
+import pafy
+def analyze(inurl, outfile): 
+	vid = pafy.new(inurl)
+	video = vid.getbest()
+	video.download(filepath='curvid')
+	filename = 'curvid'
 	vid = imageio.get_reader(filename,  'ffmpeg')
 	length =  vid.get_length()
 	fps = vid.get_meta_data()['fps']
@@ -15,7 +19,7 @@ def analyze(infile, outfile):
 			frame = vid.get_data(num)
 			images.append(imageio.core.util.asarray(frame))
 		except RuntimeError:
-		print('bad frame')
+			print('bad frame')
 
 
 	images_bytes = []

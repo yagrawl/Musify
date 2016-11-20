@@ -1,7 +1,7 @@
 Theme Song Generator is an application that classifies video clips in order to provide backgroud music which matches the mood and intensity of the video.
 
 In order to run the code in this GitHub, the proper syntax is:
-	python frames.py <url-to-youtube-video> <output-file>
+	python frames.py \<url-to-youtube-video\> \<output-file\>
 	
 This code is meant to be used as server backend and requires a lot of dependencies to use. These dependencies are as follows:
 python2.7(although a port to 3.5 would likely be simple)

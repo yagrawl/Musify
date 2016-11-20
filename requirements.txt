@@ -1,0 +1,8 @@
+clarifai==2.0.12
+configparser==3.5.0
+future==0.15.2
+imageio==1.6
+numpy==1.11.2
+pafy==0.5.2
+pydub==0.16.6
+requests==2.11.1

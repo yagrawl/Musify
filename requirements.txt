@@ -6,3 +6,4 @@ numpy==1.11.2
 pafy==0.5.2
 pydub==0.16.6
 requests==2.11.1
+youtube-dl==2016.11.18

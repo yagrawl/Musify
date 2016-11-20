@@ -53,7 +53,6 @@ def analyze(infile, outfile):
 				word_counts[concept['id']] = word_counts.get(concept['id'], 0) + concept['value']
 			concept_counts[word] = concept_counts.get(word, 0) + 1
 			#print (concept_counts[word])
-	print concept_counts
 
 
 
@@ -84,7 +83,6 @@ def analyze(infile, outfile):
 		elif 1/ratio > 2:
 			songf = songf[:7] + 'H' + songf[8:]
 			
-	print(songf)
 	song = AudioSegment.from_mp3(songf)
 
 	vidLen = int(length/fps)

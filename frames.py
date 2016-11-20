@@ -2,8 +2,9 @@ import imageio
 from upload import sendImages 
 import binascii
 from pydub import AudioSegment
+from splice import splice
 
-filename = 'Bike.mp4'
+filename = 'Basket.m4v'
 vid = imageio.get_reader(filename,  'ffmpeg')
 length =  vid.get_length()
 fps = vid.get_meta_data()['fps']
@@ -48,21 +49,21 @@ if(argmax(concept_counts) == 'action'):
 elif(argmax(concept_counts) == 'happy'):
 	song = AudioSegment.from_mp3("songs/Happy1.mp3")
 elif(argmax(concept_counts) == 'sad'):
-	song = AudioSegment.from_mp3("songs/Sad1.mp3")
+	song = AudioSegment.from_mp3("songs/Sad2.mp3")
 elif(argmax(concept_counts) == 'calm'):
 	song = AudioSegment.from_mp3("songs/Calm1.mp3")
 
 vidLen = int(length/fps)
 songLen = int(song.duration_seconds)
+vidSong = song
 
 while(songLen < vidLen):
 	vidSong += song
 	songLen = int(vidSong.duration_seconds)
 
 if(songLen >= vidLen):
-	vidSong = vidSong[:vidLen]
+	vidSong = vidSong[:vidLen*1000]
 
-
-
-
+vidSong.export('temp.mp3', format="mp3")
+splice(filename, "temp.mp3", 'output.mp4')
 

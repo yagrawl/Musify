@@ -110,6 +110,7 @@ def getfrurl(inurl):
 def main():
 	if sys.argv[1] == '-u':
 		analyze(getfrurl(sys.argv[2]), sys.argv[3])
-	analyze(sys.argv[1], sys.argv[2])
+	else:
+		analyze(sys.argv[1], sys.argv[2])
 if __name__ == '__main__':
 	main()

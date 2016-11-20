@@ -4,7 +4,7 @@ import binascii
 from pydub import AudioSegment
 from splice import splice
 
-filename = 'Videos/Rain.mp4'
+filename = 'Videos/Buzz.mp4'
 vid = imageio.get_reader(filename,  'ffmpeg')
 length =  vid.get_length()
 fps = vid.get_meta_data()['fps']
@@ -26,26 +26,31 @@ for i in range(len(images)):
 base64 = []
 for image in images_bytes:
 	base64.append(binascii.b2a_base64(image))
-
-r = sendImages(base64)
+rs = []
+for i in range(0,len(base64), 128):
+	if len(base64) - i < 128:
+		rs += sendImages(base64[i:])
+	else:
+		rs += sendImages(base64[i:i+128])
 
 print('--'*48)
 # the below is a list of n maps of labeled concepts and probabilities
 # for m images.
 word_counts = {}
 concept_counts = {}
-for image in r['outputs']:
-	concepts = (image['data']['concepts'])
-	word = ''
-	value = 0.0
-	for concept in concepts:
-		#print(concept['id'], concept['value'])
-		if concept['value'] > value:
-			value = concept['value']
-			word = concept['id']
-		word_counts[concept['id']] = word_counts.get(concept['id'], 0) + concept['value']
-	concept_counts[word] = concept_counts.get(word, 0) + 1
-	#print (concept_counts[word])
+for r in rs:
+	for image in r['outputs']:
+		concepts = (image['data']['concepts'])
+		word = ''
+		value = 0.0
+		for concept in concepts:
+			#print(concept['id'], concept['value'])
+			if concept['value'] > value:
+				value = concept['value']
+				word = concept['id']
+			word_counts[concept['id']] = word_counts.get(concept['id'], 0) + concept['value']
+		concept_counts[word] = concept_counts.get(word, 0) + 1
+		#print (concept_counts[word])
 print concept_counts
 
 
@@ -67,15 +72,15 @@ other = ''
 if(mx == 'sad' or mx == 'happy'):
 	ratio = word_counts['calm']/word_counts['action']
 	if ratio > 2:
-		songf = songf[:6] + 'C' + songf[7:]
+		songf[6] = 'C'
 	elif 1/ratio > 2:
-		songf = songf[:6] + 'A' + songf[7:]
+		songf[6] = 'A'
 else:
 	ratio = word_counts['sad']/word_counts['happy']
 	if ratio > 2:
-		songf = songf[:7] + 'S' + songf[8:]
+		songf[7] = 'S'
 	elif 1/ratio > 2:
-		songf = songf[:7] + 'H' + songf[8:]
+		songf[7] = 'H'
 		
 print(songf)
 song = AudioSegment.from_mp3(songf)

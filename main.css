@@ -1,0 +1,29 @@
+body {
+    background: url("bg.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+
+.title-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    color: #333333;
+}
+
+.info-text {
+   font-family: 'Roboto', sans-serif;
+   font-size: 30px;
+   color: black; 
+}
+
+.image-shadow {
+    box-shadow: 5px 5px 100px #888888;
+}
+
+.image-upload > input
+{
+    display: none;
+}

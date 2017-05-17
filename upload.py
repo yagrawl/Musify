@@ -4,7 +4,7 @@ import requests
 
 
 def sendImages(rawArray):
-	payload = {'client_id':'CLIENT_ID', 'client_secret':'CLIENT_SECRET', 'grant_type':'client_credentials'}
+	payload = {'client_id':'IPrJFqHURndkFxHoJmlSantt4WXPEh2lwTkWTxO_', 'client_secret':'b3kT3CsZgGB5YYROAJ7qgsR696tY255tCFj6hicF', 'grant_type':'client_credentials'}
 	#r = requests.post("https://api.clarifai.com/v1/token/", data=payload)
 #print(r.text)
 
